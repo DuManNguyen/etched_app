@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "391500928686",
+    "project_id": "etched-test-a5750",
+    "storage_bucket": "etched-test-a5750.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391500928686:android:3554a35ffb6b2d2c5b3f3f",
+        "android_client_info": {
+          "package_name": "com.example.etched_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391500928686-9dp36cdsop3f89q4d1thd86he7pulgid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTV-GpOcMDACgCugjqFnV41OwbVALjuvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391500928686-9dp36cdsop3f89q4d1thd86he7pulgid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
