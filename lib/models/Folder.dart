@@ -8,6 +8,7 @@ class Folder {
   String occasion;
   String thoughts;
   String imgUrl;
+  String documentId;
 
   Folder(this.note, this.name, this.startDate, this.endDate, this.occasion,
       this.thoughts, this.imgUrl);
@@ -24,9 +25,11 @@ class Folder {
       };
   Folder.fromSnapshot(DocumentSnapshot snapshot)
       : name = snapshot['name'],
-        //   startDate = snapshot['startDate'],
-        //  endDate = snapshot['endDate'],
+        startDate = snapshot['startDate'].toDate(),
+        endDate = snapshot['endDate'].toDate(),
         note = snapshot['note'],
         occasion = snapshot['occasion'],
-        thoughts = snapshot['thoughts'];
+        thoughts = snapshot['thoughts'],
+        imgUrl = snapshot['imgUrl'],
+        documentId = snapshot.documentID;
 }

@@ -52,6 +52,7 @@ class NewFolderView extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => UploadImage(folder: folder)),
+                //builder: (context) => NewFolderDateView(folder: folder),
               );
             },
           )

@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:etched_test/models/Folder.dart';
 import 'package:flutter/material.dart';
+import '';
 
 class AlicePage extends StatelessWidget {
   final int page;
+  final db = Firestore.instance;
+  final Folder folder;
 
-  const AlicePage({Key key, this.page}) : super(key: key);
+  AlicePage({Key key, this.page, this.folder}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle.merge(
@@ -24,7 +29,7 @@ class AlicePage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Text(
-                "Down the Rabbit-Hole",
+                "Moments: ${folder.name}",
                 style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.w500,

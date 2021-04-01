@@ -1,3 +1,9 @@
+import 'dart:io';
+import 'package:etched_test/services/auth_service.dart';
+import 'package:etched_test/views/new_album.dart/image.dart';
+import 'package:random_string/random_string.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:etched_test/models/Folder.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DatePicker;
@@ -39,38 +45,119 @@ class _NewFolderDateViewState extends State<NewFolderDateView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('This memory is on: ')),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Album: ${widget.folder.name}"),
-          RaisedButton(
-              child: Text("Select the date"),
-              onPressed: () async {
-                await calendar(context);
-              }),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text(
-                  "Start Date: ${DateFormat('MM/dd/yyyy').format(_startDate).toString()}"),
-              Text(
-                  "End Date: ${DateFormat('MM/dd/yyyy').format(_endDate).toString()}"),
-            ],
+      body: Center(
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              title: Text(''),
+              backgroundColor: Colors.green,
+              expandedHeight: 350.0,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.network(widget.folder.imgUrl),
+              ),
+            ),
+            SliverFixedExtentList(
+              itemExtent: 200.00,
+              delegate: SliverChildListDelegate([
+                buildSelectedDetails(context, widget.folder),
+                buildButtons(),
+              ]),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildButtons() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.60,
+          child: RaisedButton(
+            child: Text("Change Date Range"),
+            color: Colors.deepPurpleAccent,
+            textColor: Colors.white,
+            onPressed: () async {
+              await calendar(context);
+            },
           ),
-          RaisedButton(
-            child: Text("Submit"),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.60,
+          child: RaisedButton(
+            child: Text('Continue'),
+            color: Colors.amberAccent,
             onPressed: () {
               widget.folder.startDate = _startDate;
               widget.folder.endDate = _endDate;
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        NewFolderNoteView(folder: widget.folder)),
+                  builder: (context) => NewFolderNoteView(
+                    folder: widget.folder,
+                  ),
+                ),
               );
             },
-          )
-        ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildSelectedDates() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Start Date"),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    "${DateFormat('MM-dd').format(_startDate).toString()}",
+                    style: TextStyle(fontSize: 35, color: Colors.red[200]),
+                  ),
+                ),
+                Text(
+                  "${DateFormat('yyyy').format(_startDate).toString()}",
+                  style: TextStyle(color: Colors.red[200]),
+                ),
+              ],
+            ),
+            Container(
+                child: Icon(
+              Icons.arrow_forward,
+              color: Colors.deepOrange,
+              size: 45,
+            )),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("End Date"),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    "${DateFormat('MM-dd').format(_endDate).toString()}",
+                    style: TextStyle(fontSize: 35, color: Colors.deepPurple),
+                  ),
+                ),
+                Text(
+                  "${DateFormat('yyyy').format(_endDate).toString()}",
+                  style: TextStyle(color: Colors.deepPurple),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -104,7 +191,7 @@ class _NewFolderDateViewState extends State<NewFolderDateView> {
                               ),
                             ],
                           ),
-                          //  build(),
+                          buildSelectedDates(),
                         ],
                       ),
                     ),

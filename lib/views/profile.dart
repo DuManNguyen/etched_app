@@ -3,14 +3,110 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
+import 'package:etched_test/models/userModel.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
+  Profile({Key key}) : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+//   userService _userService = userService();
+//     @override
+//   Widget build(BuildContext context) {
+//     final String uid = ModalRoute.of(context).settings.arguments;
+//     return MultiProvider(
+//         providers: [
+//           StreamProvider.value(
+//             value: _userService.getUserInfo(uid),
+//           )
+//         ],
+//         child: Scaffold(
+//             body: DefaultTabController(
+//           length: 2,
+//           child: NestedScrollView(
+//               headerSliverBuilder: (context, _) {
+//                 return [
+//                   SliverAppBar(
+//                     floating: false,
+//                     pinned: true,
+//                     expandedHeight: 130,
+//                     flexibleSpace: FlexibleSpaceBar(
+//                         background: Image.network(
+//                       Provider.of<userModel>(context).bannerImageUrl ?? '',
+//                       fit: BoxFit.cover,
+//                     )),
+//                   ),
+//                   SliverList(
+//                       delegate: SliverChildListDelegate([
+//                     Container(
+//                       padding:
+//                           EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+//                       child: Column(
+//                         children: [
+//                           Row(
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               children: [
+//                                 Provider.of<UserModel>(context)
+//                                             .profileImageUrl !=
+//                                         ''
+//                                     ? CircleAvatar(
+//                                         radius: 30,
+//                                         backgroundImage: NetworkImage(
+//                                             Provider.of<UserModel>(context)
+//                                                 .profileImageUrl),
+//                                       )
+//                                     : Icon(Icons.person, size: 50),
+//                                 if (FirebaseAuth.instance.currentUser.uid ==
+//                                     uid)
+//                                   TextButton(
+//                                       onPressed: () {
+//                                         Navigator.pushNamed(context, '/edit');
+//                                       },
+//                                       child: Text("Edit Profile"))
+//                                 else  (FirebaseAuth
+//                                             .instance.currentUser.uid !=
+//                                         uid &&
+//                                     !Provider.of<bool>(context))
+//                                   TextButton(
+//                                       onPressed: () {
+//                                        print("hello");
+//                                       },
+//                                       child: Text("Follow"))
+//                                 else if (FirebaseAuth
+//                                             .instance.currentUser.uid !=
+//                                         uid &&
+//                                     Provider.of<bool>(context))
+//                                   TextButton(
+//                                       onPressed: () {
+//                                         _userService.unfollowUser(uid);
+//                                       },
+//                                       child: Text("Unfollow")),
+//                               ]),
+//                           Align(
+//                             alignment: Alignment.centerLeft,
+//                             child: Container(
+//                               padding: EdgeInsets.symmetric(vertical: 10),
+//                               child: Text(
+//                                 Provider.of<UserModel>(context).name ?? '',
+//                                 style: TextStyle(
+//                                   fontWeight: FontWeight.bold,
+//                                   fontSize: 20,
+//                                 ),
+//                               ),
+//                             ),
+//                           )
+//                         ],
+//                       ),
+//                     )
+//                   ]))
+//                 ];
+//               },
+
+//         )));
+//  }
   File _image;
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -112,8 +208,8 @@ class _ProfileState extends State<Profile> {
             children: <Widget>[
               RaisedButton(
                 color: Colors.blue[300],
-                onPressed: () {
-                  Navigator.of(context).pop();
+                onPressed: () async {
+                  Navigator.of(context).popUntil((route) => route.isFirst);
                 },
                 elevation: 4.0,
                 splashColor: Colors.blue[300],

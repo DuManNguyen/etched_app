@@ -106,50 +106,55 @@ class _RegisterState extends State<Register> {
       submit();
       return Scaffold(
         backgroundColor: Colors.teal[200],
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-            ),
-            SpinKitPumpingHeart(
-              color: Colors.pink[100],
-            ),
-            Text(
-              "Loading",
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+              ),
+              SpinKitPumpingHeart(
+                color: Colors.pink[100],
+              ),
+              Text(
+                "Loading",
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
         ),
       );
     } else {
       return Scaffold(
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/DSCF7129.jpg'), fit: BoxFit.cover)),
-          child: SafeArea(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: _height * 0.07),
-                showAlert(),
-                SizedBox(height: _height * 0.02),
-                buildHeaderText(),
-                SizedBox(
-                  height: _height * 0.02,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(50.0),
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      children: buildInputs() + buildButtons(),
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/DSCF7129.jpg'),
+                    fit: BoxFit.cover)),
+            child: SafeArea(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: _height * 0.07),
+                  showAlert(),
+                  SizedBox(height: _height * 0.02),
+                  buildHeaderText(),
+                  SizedBox(
+                    height: _height * 0.02,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        children: buildInputs() + buildButtons(),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

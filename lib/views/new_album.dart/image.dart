@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:etched_test/models/Folder.dart';
+import 'package:etched_test/services/crud.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,10 +17,11 @@ class UploadImage extends StatefulWidget {
 }
 
 class _UploadImageState extends State<UploadImage> {
+  UploadImage uploadImage;
   File selectedImage;
+  var downloadUrl;
   get picker => ImagePicker();
   bool _isLoading = false;
-  AuthService authService = new AuthService();
 
   Future getImage() async {
     var image = await picker.getImage(source: ImageSource.gallery);
@@ -44,8 +46,17 @@ class _UploadImageState extends State<UploadImage> {
           .child("etchedImages")
           .child("${randomAlphaNumeric(9)}.jpg");
       final StorageUploadTask task = firebaseStorageRef.putFile(selectedImage);
-      var downloadUrl = await (await task.onComplete).ref.getDownloadURL();
+      downloadUrl = await (await task.onComplete).ref.getDownloadURL();
       print("this is url $downloadUrl");
+
+      //   Map<String, String> etchMap = {
+      //     imgUrl: downloadUrl,
+      //   };
+      //   crudMethods.addData(etchMap).then((result) {
+      //     Navigator.pop(context);
+      //   });
+      // } else {}
+      // print("this is url $downloadUrl");
     }
   }
 
@@ -128,13 +139,17 @@ class _UploadImageState extends State<UploadImage> {
                     RaisedButton(
                         child: Text("Submit"),
                         onPressed: () {
+                          //  print(widget.folder);
+                          // uploadImage.folder.imgUrl =
+                          //     _UploadImageState().uploadFolder().downloadUrl;
+                          _UploadImageState().downloadUrl =
+                              uploadImage.folder.imgUrl;
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => NewFolderDateView(
-                                  folder: widget.folder,
-                                ),
-                              ));
+                                  builder: (context) => NewFolderDateView(
+                                        folder: widget.folder,
+                                      )));
                         })
                   ],
                 ),
