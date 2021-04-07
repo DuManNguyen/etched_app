@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "391500928686",
-    "project_id": "etched-test-a5750",
-    "storage_bucket": "etched-test-a5750.appspot.com"
+    "project_number": "267160908047",
+    "project_id": "etched-test-80a7b",
+    "storage_bucket": "etched-test-80a7b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:391500928686:android:3554a35ffb6b2d2c5b3f3f",
+        "mobilesdk_app_id": "1:267160908047:android:5b635efe7cd34c3e1e8e7a",
         "android_client_info": {
           "package_name": "com.example.etched_test"
         }
       },
       "oauth_client": [
         {
-          "client_id": "391500928686-9dp36cdsop3f89q4d1thd86he7pulgid.apps.googleusercontent.com",
+          "client_id": "267160908047-8a5scri11354e85p1j4q62hdcluohahq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.etched_test",
+            "certificate_hash": "e7d9cc54797674beea3243c75ccfe58ae0a35f36"
+          }
+        },
+        {
+          "client_id": "267160908047-qqgvh1t83gcbreubmdes50sri5e34rpq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCTV-GpOcMDACgCugjqFnV41OwbVALjuvo"
+          "current_key": "AIzaSyCWrF-lZch7HQYa2UcQkcbRPbw_ohGueLs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "391500928686-9dp36cdsop3f89q4d1thd86he7pulgid.apps.googleusercontent.com",
+              "client_id": "267160908047-qqgvh1t83gcbreubmdes50sri5e34rpq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

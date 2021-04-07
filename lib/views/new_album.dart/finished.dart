@@ -33,6 +33,7 @@ class NewFolderFinishedView extends StatelessWidget {
                     .document(uid)
                     .collection("userData")
                     .add(folder.toJson());
+
                 Navigator.of(context).popUntil((route) => route.isFirst);
               },
             )
