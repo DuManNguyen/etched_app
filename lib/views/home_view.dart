@@ -120,7 +120,7 @@ class HomeView extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DetailCardView(
+                      builder: (context) => DetailCardViewPage(
                         folder: document,
                       ),
                     ));
