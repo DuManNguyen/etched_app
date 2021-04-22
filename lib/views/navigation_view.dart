@@ -73,6 +73,8 @@ class _HomeState extends State<Home> {
             ),
             actions: <Widget>[
               IconButton(
+                iconSize: 40,
+                color: Colors.white,
                 icon: Icon(Icons.add),
                 onPressed: () {
                   Navigator.push(
@@ -94,14 +96,14 @@ class _HomeState extends State<Home> {
                     print(a);
                   }
                 },
-              ),
-              *
+              ),*/
               IconButton(
+                color: Colors.white,
                 icon: Icon(Icons.account_circle),
                 onPressed: () {
                   Navigator.of(context).pushNamed('/convertUser');
                 },
-              )*/
+              )
             ],
             //  backgroundColor: Colors.white,
             //   elevation: 0,
