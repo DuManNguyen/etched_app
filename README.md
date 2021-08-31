@@ -1,8 +1,5 @@
-# etched_test
+# etched
 
-Etched project for personal albums of photo and text in collage form
+Etched is a mobile application built on the basis of Google UI toolkit Flutter using the programming language Dart to give parents an efficient way of safekeeping and exhibiting precious family moments with the ability to store images, text and printable collage/journal hybrid. Flutter allows the application to be cross-platform but an issue faced is having it function effectively and meeting the requirements given to go cross-platform. 
 
-## Warning
-
-To OCPL members: please do not publicized this repos as there are sensitive credentials in some files
 
